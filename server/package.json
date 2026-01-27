@@ -2,10 +2,10 @@
   "name": "server",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start":"nodemon ."
+    "start": "nodemon ."
   },
   "keywords": [],
   "author": "",
@@ -16,6 +16,7 @@
     "express": "^5.2.1"
   },
   "devDependencies": {
+    "@types/mysql": "^2.15.27",
     "mysql2": "^3.16.1",
     "nodemon": "^3.1.11",
     "sequelize": "^6.37.7"
