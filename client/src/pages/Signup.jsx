@@ -1,23 +1,31 @@
 import React, { useState } from "react";
-import api from "../services/api";
+import { signup } from "../services/api";
 import { useNavigate } from "react-router-dom";
+import "../pages/signup.css"
 
-const Signup = () => {
+function Signup  () {
   const navigate=useNavigate();
   const [user, setUser] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
   const [loading, setloading] = useState(false);
   const handleSubmit = async (e) => {
     e.preventDefault();
     setloading(true);
+    setError("");
     try{
-const response=await api.post("/signup",{
-  email,password
-});
-console.log(response);
-navigate("/login");
-    }catch(err){console.log(err)}
+      await signup({email,password});
+// const response=await api.post("/signup",{
+//   email,password
+// });
+// console.log(response);
+alert("Successfully created")
+navigate("/");
+    }catch(err){
+      setError("Failed to register the data");
+      setTimeout(()=>{setError,3000});
+      console.log(err)}
     finally{setloading(false)};
   };
   return (
@@ -66,8 +74,9 @@ navigate("/login");
               }}
             />
           </div>
+          {error &&{error}}
           <button type="submit" disabled={loading}>
-            {loading?"logging in":"login"}
+            {loading?"signing in":"sign"}
           </button>
         </form>
       </div>

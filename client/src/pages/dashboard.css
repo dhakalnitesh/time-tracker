@@ -1,0 +1,42 @@
+/* h1{
+   
+   align-items: center;
+} */
+.nav{
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+  
+}
+.logout{
+    border: 1px solid black;
+    font-size: 12px;
+    width: 50px;
+}
+
+.logout:hover{
+   background-color: rgb(214, 0, 0);
+ 
+}
+.task-list{
+    background-color: rgb(157, 228, 228);
+    /* below is not working at here.  */
+   /* background-color: linear-gradient(120deg, #667eea 0%, #735691 80%); */
+}
+.avatar{
+    border: 1px solid black;
+    border-radius: 8px;
+    padding-left: 4px;
+    /* display: inline; */
+    width: 18px;
+    height: 18px;
+    color: BLACK;
+    background-color: violet;
+}
+.task-details{
+    /* display: flex; */
+    /* border: 1px sold grey;
+    border-radius: 12px; */
+    gap: 50px;
+    
+}

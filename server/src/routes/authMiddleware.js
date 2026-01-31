@@ -1,7 +1,15 @@
 import jwt from "jsonwebtoken";
+import dotenv from "dotenv";
+dotenv.config();
+
 
 const {SECRET_KEY}=process.env;
 function verifyToken(req, res, next) {
+
+    // logs
+        console.log("AUTH HEADER:", req.headers.authorization);
+console.log("SECRET:", process.env.SECRET_KEY);
+
     // Get token from header
     const authHeader = req.headers['authorization'];
     
@@ -15,7 +23,8 @@ function verifyToken(req, res, next) {
     if (!token) {
         return res.status(401).json({ message: 'Invalid token format' });
     }
-    
+
+
     try {
         // Verify and decode token
         const decoded = jwt.verify(token, SECRET_KEY);

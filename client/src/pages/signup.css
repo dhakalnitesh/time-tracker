@@ -1,14 +1,14 @@
 * {
   margin: 0px;
 }
-.login-container {
+.signup-container {
   height: 100vh;
   display: flex;
   justify-content: center;
   /* align-items: center; */
   background: linear-gradient(120deg, #667eea 0%, #764ba2 80%);
 }
-.login-box {
+.signup-box {
   background: white;
   padding: 40px;
   margin-top: 20vh;
@@ -17,22 +17,22 @@
   max-width: 400px;
   max-height: 50vh;
 }
-.login-box h1{
+.signup-box h1{
 text-align: center;
   font-size: 33px;
   color:#241a2e;
   margin-bottom: 10px;
 }
-.login-box h2{
+.signup-box h2{
   text-align: center;
   font-size: 26px;
  margin-bottom: 30px;
 }
-.form-group{
+.form-box{
   position: relative;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
-.form-group label{
+.form-box label{
   display: flex;
   margin-bottom: 5px;
  
@@ -59,8 +59,4 @@ button:hover{
 }
 .signup-link a:hover{
   text-decoration: underline;
-}
-.error-message{
-  color:red;
-
 }

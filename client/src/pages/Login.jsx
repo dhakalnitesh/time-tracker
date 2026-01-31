@@ -1,7 +1,7 @@
 import React from "react";
 import "../pages/login.css";
 import { useState } from "react";
-import api from "../services/api";
+import { login } from "../services/api";
 import {useNavigate} from "react-router-dom";
 import { Link } from "react-router-dom";
 
@@ -17,13 +17,14 @@ const Login = () => {
     setError('');
     setLoading(true);
     try {
-      const response = await api.post("/login", {
-        email,
-        password,
-      });
+      await login({email,password});
+      // const response = await api.post("/login", {
+      //   email,
+      //   password,
+      // });
       // console.log(response.data)
-      localStorage.setItem("token", response.data.token);
-       navigate('/signup');
+      // localStorage.setItem("token", response.data.token);
+       navigate('/dashboard');
      
 
       console.log("Success to get the credintals");

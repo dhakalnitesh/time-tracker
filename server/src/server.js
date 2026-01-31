@@ -3,12 +3,13 @@ import connection from "./database/sequelize.js";
 import "./database/models.js";
 import userRouter from "./routes/userRoute.js"
 import taskRouter from "./routes/taskRoute.js";
-// import cors from cors;
+import cors from "cors";
+
 // import mysql from "mysql2";
 
 const app = express();
 app.use(express.json());
-// app.use(cors());
+app.use(cors());
 app.get("/",(req,res)=>{
 res.send("Routes is working...");
 });
