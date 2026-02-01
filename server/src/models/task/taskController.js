@@ -60,7 +60,11 @@ class TaskController {
 
     //search the task by date
     async getTaskByDate(req, res) {
-        const { dateInput } = req.query;
+
+        const dateInput = req.params.date||req.query;
+        // OR. Date doesnot come here at object
+        // const dateInput = req.query;
+        console.log(dateInput)
         try {
             const data = await taskModel.findAll({
                 where: {
@@ -108,9 +112,10 @@ class TaskController {
             group: ['date'],
             raw: true
         });
-        if (!result.length) {
-            return res.status(404).json({ message: "No tasks found for this date" });
-        }
+        //this below condition  takes my 3+ hours  to solve the problem.
+        // if (!result.length) {
+        //     return res.status(404).json({ message: "No tasks found for this date" });
+        // }
         return res.json(result);
     } catch (err) {
         console.error(err);
