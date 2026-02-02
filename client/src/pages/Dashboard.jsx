@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable react-hooks/immutability */
+
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import "../pages/dashboard.css";
@@ -48,6 +48,9 @@ const Dashboard = () => {
       setError("Something went wrong");
     }
   };
+  const taskHistory=()=>{
+    navigate("/History")
+  }
   const fetchSummary = async (date) => {
     const selectedDate = date || currentDate;
     try {
@@ -57,6 +60,7 @@ const Dashboard = () => {
       if (!summaryResponse.data || summaryResponse.data.length === 0) {
         setSummary([]);
       } else {
+       
         setSummary(summaryResponse.data);
       }
     } catch (err) {
@@ -83,6 +87,7 @@ const Dashboard = () => {
       </div>
 
       <button onClick={addTask}>Add Task</button>
+    <span> <button onClick={taskHistory}> Task History</button></span> 
       <div className="time-summary" style={{ backgroundColor: "lightBlue" }}>
         <br />
         <h3> Today Task Summary </h3>
@@ -90,13 +95,15 @@ const Dashboard = () => {
 
   {summary && summary.length > 0 && summary.map((time, index) => {
     const { date, total_minutes } = time;
-    const hours = Math.floor(total_minutes / 60);
-    const minute = total_minutes % 60;
+     const minutesTotal=Number(total_minutes);
+    const hours = Math.floor(minutesTotal/ 60);
+    const minute = minutesTotal % 60;
           return (
             <div key={index}>
               <p>{date}</p>
               <p>
-                Total Time: {hours} hour {minute} minutes
+             Total Time: {hours > 0 && `${hours} hour `}
+        {minute} minutes
               </p>
               <br />
             </div>
