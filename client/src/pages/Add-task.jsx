@@ -33,7 +33,8 @@ const Add = () => {
       await taskAdd({task_name: task,
             category,
             time_minutes: time,
-            date, })
+            date, });
+            alert("Successfully added task..")
             console.log("successfully added");
             e.target.reset();
     } catch (err) {

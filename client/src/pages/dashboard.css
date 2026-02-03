@@ -1,45 +1,52 @@
-/* h1{
-   
-   align-items: center;
-} */
-.nav{
-    margin-top: 20px;
-    display: flex;
-    justify-content: center;
-  
+.dashboard-container {
+  width: 100%;
+  background-color: bisque;
+  min-height: 100vh;
 }
-.logout{
-    border: 1px solid black;
-    font-size: 12px;
-    width: 50px;
+.nav {
+  background-color: rgb(103, 105, 170);
+  color: white;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 30px;
+}
+.logout {
+  cursor: pointer;
+  padding: 6px 12px;
+}
+.main {
+  display: flex;
+  padding-top: 20px;
+  width: 100%;
+}
+.left,
+.right {
+  flex: 1;
+  padding: 30px;
 }
 
-.logout:hover{
-   background-color: rgb(214, 0, 0);
- 
+.left {
+  flex: 1;
 }
-.task-list{
-    background-color: rgb(157, 228, 228);
-    /* below is not working at here.  */
-   /* background-color: linear-gradient(120deg, #667eea 0%, #735691 80%); */
+.right {
+  flex: 1;
 }
-.avatar{
-    border: 1px solid black;
-    border-radius: 8px;
-    padding-left: 4px;
-    /* display: inline; */
-    width: 18px;
-    height: 18px;
-    color: BLACK;
-    background-color: violet;
+
+.task-list {
+  display: flex;
+  margin-top: 10px;
+grid-template-columns: repeat(2,1fr);
+gap: 15px;
+width: 100%;
 }
-.task-details{
-    /* display: flex; */
-    /* border: 1px sold grey;
-    border-radius: 12px; */
-    gap: 50px;
-    
+.task-details {
+  background-color: rgb(205, 216, 223);
+  border-radius: 5px;
+  max-width: 50%;
+  margin-bottom: 25px;
+  padding: 15px;
 }
-button{
-    font-size: 16px;
+.error {
+  color: red;
+  margin-top: 10px;
 }

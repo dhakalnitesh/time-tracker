@@ -42,13 +42,19 @@ class TaskController {
         }
 
     };
+
+    //get total number of task
+    // async getTotalN(req,res){
+    //       const user_id = req.user.id;
+    //     const taskCount=await taskModel.
+    // }
     //get task
     async getTask(req, res) {
         const user_id = req.user.id;
         try {
             if (user_id) {
-                const data = await taskModel.findAll();
-                return res.json(data);
+                const {count, rows} = await taskModel.findAndCountAll();
+                return res.json({ count, tasks: rows });
             }
             else {
                 res.json("Failed to load the data");
@@ -66,13 +72,14 @@ class TaskController {
         // const dateInput = req.query;
         console.log(dateInput)
         try {
-            const data = await taskModel.findAll({
+            const {count,rows} = await taskModel.findAndCountAll({
                 where: {
                     user_id: req.user.id,
                     date: dateInput,
                 },
             });
-            return res.json(data);
+           
+            return res.json({count , tasks:rows});
         } catch (err) { res.json(err) };
     };
     //delete the task
@@ -109,6 +116,7 @@ class TaskController {
                 [Sequelize.fn('SUM', Sequelize.col('time_minutes')), 'total_minutes']
             ],
             where: { date },
+            
             group: ['date'],
             raw: true
         });

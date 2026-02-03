@@ -15,6 +15,8 @@ const Dashboard = () => {
   }, []);
 
   const [list, setList] = useState([]);
+  const [taskCount, setTaskCount] = useState(0);
+
   const [summary, setSummary] = useState([]);
   const [error, setError] = useState("");
   const navigate = useNavigate();
@@ -40,7 +42,8 @@ const Dashboard = () => {
       if (!response.data || response.data.length === 0) {
         setList([]);
       } else {
-        setList(response.data);
+        setTaskCount(response.data.count);
+        setList(response.data.tasks);
         setError(null);
       }
     } catch (err) {
@@ -48,9 +51,9 @@ const Dashboard = () => {
       setError("Something went wrong");
     }
   };
-  const taskHistory=()=>{
-    navigate("/History")
-  }
+  const taskHistory = () => {
+    navigate("/History");
+  };
   const fetchSummary = async (date) => {
     const selectedDate = date || currentDate;
     try {
@@ -60,7 +63,6 @@ const Dashboard = () => {
       if (!summaryResponse.data || summaryResponse.data.length === 0) {
         setSummary([]);
       } else {
-       
         setSummary(summaryResponse.data);
       }
     } catch (err) {
@@ -78,78 +80,91 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="dashboard-container">
-      <div className="nav">
-        <h1>Task Tracker System</h1>
-        <button className="logout" onClick={logout}>
-          Logout
-        </button>
+  <div className="dashboard-container">
+    {/* NAV */}
+    <div className="nav">
+      <h1>Task Tracker System</h1>
+      <button className="logout" onClick={logout}>
+        Logout
+      </button>
+    </div>
+
+    {/* LEFT + RIGHT WRAPPER */}
+    <div className="main">
+      {/* LEFT */}
+      <div className="left">
+        <button onClick={addTask}>Add Task</button>
+        <button onClick={taskHistory}>Task History</button>
+
+        <div className="task-head">
+          <div className="task">
+            <h2>
+              Task List{" "}
+              <input
+                type="date"
+                name="date"
+                onChange={(e) => {
+                  fetchData(e.target.value);
+                  fetchSummary(e.target.value);
+                }}
+              />
+            </h2>
+            <h3>Total Task: {taskCount}</h3>
+          </div>
+
+          {error && <p className="error">{error}</p>}
+          {!error && list.length === 0 && <p>No tasks found for today</p>}
+
+          <div className="task-list">
+            {list.map((item) => {
+              const { id, task_name, category, time_minutes, date } = item;
+              return (
+                <div className="task-details" key={id}>
+                  <p className="avatar">{id}</p>
+                  <p>{task_name}</p>
+                  <p>{category}</p>
+                  <p>{time_minutes}</p>
+                  <p>{date}</p>
+                  <button onClick={() => taskDelete(id)}>Delete</button>
+                </div>
+              );
+            })}
+          </div>
+        </div>
       </div>
 
-      <button onClick={addTask}>Add Task</button>
-    <span> <button onClick={taskHistory}> Task History</button></span> 
-      <div className="time-summary" style={{ backgroundColor: "lightBlue" }}>
-        <br />
-        <h3> Today Task Summary </h3>
-        {!error && (!summary || summary.length === 0) && <p>No summary for today</p>}
+      {/* RIGHT */}
+      <div className="right">
+        <div className="time-summary">
+          <h3>Today Task Summary</h3>
 
-  {summary && summary.length > 0 && summary.map((time, index) => {
-    const { date, total_minutes } = time;
-     const minutesTotal=Number(total_minutes);
-    const hours = Math.floor(minutesTotal/ 60);
-    const minute = minutesTotal % 60;
-          return (
-            <div key={index}>
-              <p>{date}</p>
-              <p>
-             Total Time: {hours > 0 && `${hours} hour `}
-        {minute} minutes
-              </p>
-              <br />
-            </div>
-          );
-        })}
-      </div>
+          {!error && (!summary || summary.length === 0) && (
+            <p>No summary for today</p>
+          )}
 
-      <div className="task">
-        <h2>
-          Task List{" "}
-          <input
-            type="date"
-            name="date"
-            onChange={(e) => {
-              fetchData(e.target.value);
-              fetchSummary(e.target.value);
-            }}
-          />
-        </h2>
-        {error && <p className="error">{error}</p>}
+          {summary &&
+            summary.length > 0 &&
+            summary.map((time, index) => {
+              const minutesTotal = Number(time.total_minutes);
+              const hours = Math.floor(minutesTotal / 60);
+              const minute = minutesTotal % 60;
 
-        {!error && list.length === 0 && <p>No tasks found for today</p>}
-
-        {list.map((task) => (
-          <div key={task.id} {...task} />
-        ))}
-
-        <div className="task-list">
-          {list.length > 0 && list.map((item) => {
-            const { id, task_name, category, time_minutes, date } = item;
-            return (
-              <div className="task-details" key={id}>
-                <p className="avatar">{id}</p>
-                <p>{task_name}</p>
-                <p>{category}</p>
-                <p>{time_minutes}</p>
-                <p>{date}</p>
-                <button onClick={() => taskDelete(id)}>Delete</button>
-                <br />
-              </div>
-            );
-          })}
+              return (
+                <div key={index}>
+                  <p>{time.date}</p>
+                  <p>
+                    Total Time: {hours > 0 && `${hours} hour `}
+                    {minute} minutes
+                  </p>
+                </div>
+              );
+            })}
         </div>
       </div>
     </div>
-  );
+  </div>
+);
+
 };
 
 export default Dashboard;

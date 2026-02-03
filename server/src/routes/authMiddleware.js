@@ -7,8 +7,8 @@ const {SECRET_KEY}=process.env;
 function verifyToken(req, res, next) {
 
     // logs
-        console.log("AUTH HEADER:", req.headers.authorization);
-console.log("SECRET:", process.env.SECRET_KEY);
+//         console.log("AUTH HEADER:", req.headers.authorization);
+// console.log("SECRET:", process.env.SECRET_KEY);
 
     // Get token from header
     const authHeader = req.headers['authorization'];
