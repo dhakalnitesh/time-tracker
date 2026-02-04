@@ -93,12 +93,14 @@ const Dashboard = () => {
     <div className="main">
       {/* LEFT */}
       <div className="left">
-        <button onClick={addTask}>Add Task</button>
-        <button onClick={taskHistory}>Task History</button>
+        <div className="task-buttons">
+        <button className="btn-primary" onClick={addTask}>Add Task</button>
+        <button className="btn-primary" onClick={taskHistory}>Task History</button>
+</div>
 
         <div className="task-head">
           <div className="task">
-            <h2>
+            <h3>
               Task List{" "}
               <input
                 type="date"
@@ -108,8 +110,8 @@ const Dashboard = () => {
                   fetchSummary(e.target.value);
                 }}
               />
-            </h2>
-            <h3>Total Task: {taskCount}</h3>
+            </h3>
+            <h4>Total Task: {taskCount}</h4>
           </div>
 
           {error && <p className="error">{error}</p>}
@@ -121,11 +123,11 @@ const Dashboard = () => {
               return (
                 <div className="task-details" key={id}>
                   <p className="avatar">{id}</p>
-                  <p>{task_name}</p>
-                  <p>{category}</p>
-                  <p>{time_minutes}</p>
-                  <p>{date}</p>
-                  <button onClick={() => taskDelete(id)}>Delete</button>
+                  <p>Task_Name: {task_name}</p>
+                  <p>Category: {category}</p>
+                  <p>Time_minutes: {time_minutes}</p>
+                  <p>Date: {date}</p>
+                  <button className="delete-btn" onClick={() => taskDelete(id)}>Delete</button>
                 </div>
               );
             })}

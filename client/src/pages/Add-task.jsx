@@ -2,34 +2,19 @@ import React from "react";
 import {taskAdd} from "../services/api";
 import "../pages/Add-task.css"
 import { useState } from "react";
+import {useNavigate} from "react-router-dom";
 const Add = () => {
   const [task, setTask] = useState("");
   const [time, setTime] = useState("");
   const [date, setDate] = useState("");
   const [category, setCategory] = useState("");
+  const navigate=useNavigate();
+  const goBack=()=>{
+    navigate("/dashboard");
+  }
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Data is sent to the route handler");
-    // const token = localStorage.getItem("token");
-    // console.log(token);
-
     try {
-      // if (token) {
-      //   console.log("HEADER VALUE:", `Bearer ${token}`);
-
-      //   const response = await api.post(
-      //     "/addTask",
-      //     {
-            // task_name: task,
-            // category,
-            // time_minutes: time,
-            // date,
-      //     },
-          
-      //   );
-
-      //   console.log(response.data);
-      // }
       await taskAdd({task_name: task,
             category,
             time_minutes: time,
@@ -44,7 +29,7 @@ const Add = () => {
   return (
     <div>
       <div className="form-container">
-        <h1>Add Task </h1>
+        <h1>Add Task  <button className="back-btn" onClick={goBack} >Back</button></h1>
         <form onSubmit={handleSubmit}>
           <div className="form-box">
             <label htmlFor="task">Task Name</label>

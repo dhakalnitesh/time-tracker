@@ -1,0 +1,28 @@
+.history-container {
+  background-color: #ffe4c4;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+.task-list {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+}
+.avatar {
+  background-color: lightblue;
+  width: 20px;
+  height: 20px;
+  border: 1px solid grey;
+  border-radius: 12px;
+  padding: 2px;
+  text-align: center;
+}
+.history-nav {
+  background-color: rgb(145, 145, 201);
+  padding: 20px 30px;
+
+  margin-bottom: 10px;
+}
+h3{
+    margin-top: 20px;
+}

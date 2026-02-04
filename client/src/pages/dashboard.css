@@ -1,9 +1,11 @@
 .dashboard-container {
+  font-family: 'Times New Roman', Times, serif;
   width: 100%;
   background-color: bisque;
   min-height: 100vh;
 }
 .nav {
+  display: flex;
   background-color: rgb(103, 105, 170);
   color: white;
   justify-content: space-between;
@@ -11,12 +13,13 @@
   padding: 12px 30px;
 }
 .logout {
+
   cursor: pointer;
   padding: 6px 12px;
 }
 .main {
   display: flex;
-  padding-top: 20px;
+  padding-top: 10px;
   width: 100%;
 }
 .left,
@@ -29,24 +32,56 @@
   flex: 1;
 }
 .right {
+  display: flex;
+  justify-content: right;
+  margin-top: 30px;
   flex: 1;
 }
 
 .task-list {
   display: flex;
   margin-top: 10px;
-grid-template-columns: repeat(2,1fr);
+grid-template-columns: repeat(auto-fill,1fr);
 gap: 15px;
 width: 100%;
 }
 .task-details {
-  background-color: rgb(205, 216, 223);
+  background-color: rgb(249, 253, 255);
   border-radius: 5px;
-  max-width: 50%;
+  max-width: 100%;
   margin-bottom: 25px;
   padding: 15px;
 }
 .error {
   color: red;
   margin-top: 10px;
+}
+.btn-primary{
+cursor: pointer;
+border: none;
+font-size: 18px;
+padding: 8px;
+}
+button:hover{
+  background-color:  rgb(103, 105, 170);
+  color: white;
+}
+
+.task-buttons{
+display: flex;
+
+gap: 15px;
+margin-bottom: 10px;
+
+}
+
+h4{
+  margin: 12px 0px;
+}
+.delete-btn{
+  margin-top: 10PX;
+  background-color: #fff;
+}
+ .delete-btn:hover {
+  background-color: #c0392b;
 }

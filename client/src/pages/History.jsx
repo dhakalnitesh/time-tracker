@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../services/api";
-
+import "../pages/history.css";
 const History = () => {
   const [task, setTask] = useState([]);
   const [taskCount, setTaskCount] = useState(0);
@@ -32,12 +32,10 @@ const History = () => {
   return (
     <div className="history-container">
       <div className="nav">
-        <h2>
+        <h1>
           Task History{" "}
-          <span>
-            <button onClick={goBack}>Back to Dashboard</button>
-          </span>
-        </h2>
+        </h1>
+            <button className="logout" onClick={goBack}>Dashboard</button>
       </div>
       <h3> Total Task: {taskCount}</h3>
 <div className="left">
@@ -47,12 +45,13 @@ const History = () => {
           return (
             <div className="task-details" key={id}>
               <p className="avatar">{id}</p>
-              <p>{task_name}</p>
-              <p>{category}</p>
-              <p>{time_minutes}</p>
-              <p>{date}</p>
               <br />
-              <button
+              <p>Task_Name: {task_name}</p>
+              <p>Category: {category}</p>
+              <p>Time_Minutes: {time_minutes}</p>
+              <p>Date: {date}</p>
+              <br />
+              <button className="delete-btn"
                 onClick={() => {
                   deleteTask(id);
                 }}
