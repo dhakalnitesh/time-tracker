@@ -1,27 +1,24 @@
 import React from "react";
-import {taskAdd} from "../services/api";
-import "../pages/Add-task.css"
+import { taskAdd } from "../services/api";
+import "../pages/Add-task.css";
 import { useState } from "react";
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 const Add = () => {
   const [task, setTask] = useState("");
   const [time, setTime] = useState("");
   const [date, setDate] = useState("");
   const [category, setCategory] = useState("");
-  const navigate=useNavigate();
-  const goBack=()=>{
+  const navigate = useNavigate();
+  const goBack = () => {
     navigate("/dashboard");
-  }
+  };
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await taskAdd({task_name: task,
-            category,
-            time_minutes: time,
-            date, });
-            alert("Successfully added task..")
-            console.log("successfully added");
-            e.target.reset();
+      await taskAdd({ task_name: task, category, time_minutes: time, date });
+      alert("Successfully added task..");
+      console.log("successfully added");
+      e.target.reset();
     } catch (err) {
       console.log("Failed to get the details", err);
     }
@@ -29,9 +26,10 @@ const Add = () => {
   return (
     <div>
       <div className="form-container">
-        <h1>Add Task  <button className="back-btn" onClick={goBack} >Back</button></h1>
         <form onSubmit={handleSubmit}>
           <div className="form-box">
+            <h1>Add Task</h1>
+            <button onClick={goBack}>Dashboard</button>
             <label htmlFor="task">Task Name</label>
             <input
               type="text"

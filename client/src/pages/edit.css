@@ -1,0 +1,14 @@
+.box-container {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  text-align: center;
+  background-color: #ffe4c4;
+  min-height: 100vh;
+}
+.form-box,.edit {
+    margin: 100px;
+    display: flex;
+    justify-content: center;
+
+}

@@ -5,6 +5,7 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Dashboard from "./pages/Dashboard";
 import History from "./pages/History";
+import Edit from "./pages/Edit";
 import {
   BrowserRouter as Router,
   Routes,
@@ -54,6 +55,14 @@ const App = () => {
             element={
               <ProtectedRoute>
                 <History />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/update"
+            element={
+              <ProtectedRoute>
+                <Edit />
               </ProtectedRoute>
             }
           />
