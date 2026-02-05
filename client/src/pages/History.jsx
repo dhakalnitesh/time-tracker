@@ -51,6 +51,9 @@ const History = () => {
                 <p>Time_Minutes: {time_minutes}</p>
                 <p>Date: {date}</p>
                 <br />
+                 <button className="edit-btn" onClick={() => navigate(`/update/${id}`)}>
+                      Edit
+                    </button>
 
                 <button className="delete-btn"
                   onClick={() => {
@@ -59,9 +62,6 @@ const History = () => {
                 >
                   Delete
                 </button>
-                 <button className="edit-btn" onClick={() => navigate(`/update/${id}`)}>
-                      Edit
-                    </button>
                 
               </div>
             );

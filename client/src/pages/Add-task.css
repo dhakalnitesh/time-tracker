@@ -60,13 +60,13 @@
 }
 
 .form-box button:hover {
-  background-color: #357abd;
+  background-color: #012242;
 }
 
 .back-btn {
   padding: 6px 14px;
   font-size: 14px;
-  /* background-color: transparent; */
+  background-color: transparent;
   color: #4a90e2;
   border: 1px solid #4a90e2;
   border-radius: 5px;

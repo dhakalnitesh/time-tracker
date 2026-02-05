@@ -103,3 +103,25 @@ h4 {
 .delete-btn:hover {
   background-color: #c0392b;
 }
+.time-summary p{
+  padding-left: 30PX;
+
+}
+@media (max-width: 480px) {
+  main {
+    margin: 0;
+  }
+  .time-summary {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 768px) {
+  .main, .summary-container {
+    display: block;
+  }
+  .right{
+    display: flex;
+    flex-direction: column;
+  }
+}

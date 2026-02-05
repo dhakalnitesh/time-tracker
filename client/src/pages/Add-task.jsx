@@ -9,9 +9,7 @@ const Add = () => {
   const [date, setDate] = useState("");
   const [category, setCategory] = useState("");
   const navigate = useNavigate();
-  const goBack = () => {
-    navigate("/dashboard");
-  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -29,7 +27,7 @@ const Add = () => {
         <form onSubmit={handleSubmit}>
           <div className="form-box">
             <h1>Add Task</h1>
-            <button onClick={goBack}>Dashboard</button>
+          
             <label htmlFor="task">Task Name</label>
             <input
               type="text"
@@ -70,7 +68,9 @@ const Add = () => {
                 setDate(e.target.value);
               }}
             />
-            <br /> <button type="submit">Save</button>
+            <br />
+             <button type="submit">Save</button>
+             <button type="button" onClick={()=>navigate("/dashboard")}>Cancel</button>
           </div>
         </form>
       </div>

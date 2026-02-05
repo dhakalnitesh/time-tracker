@@ -34,7 +34,7 @@ const Edit = () => {
                 })
             }
         } catch (err) {
-            setError("failed to load task data")
+            setError("Server Error: Failed to load task data")
             console.log(err);
         } finally {
             setLoading(false);
@@ -71,7 +71,7 @@ const Edit = () => {
     };
     return (
         <form onSubmit={handleSubmit}>
-            {error && <p className="error">{error}</p>}
+
             <div className="box-container">
                 <div className="form-box edit">
                     <h2>Update Data</h2>
@@ -83,11 +83,11 @@ const Edit = () => {
                     <input type="number" id="minutes" name="time_minutes" min={1} required value={formData.time_minutes} onChange={handleChange} />
                     <label htmlFor="date"></label>
                     <input type="date" name="" id="date" value={formData.date} onChange={handleChange} />
+                    <span>{error && <p className="error">{error}</p>}</span>
                     <div className="form-actions">
-                        <button type="submit" className="btn-submit">
-                            Update Task
-                        </button>
-                        <button type="button" className="btn-cancel" onClick={handleCancel}>
+
+                        <button type="submit" className="btn-submit"> Update Task</button>
+                        <button type="button" className="cancel-btn" onClick={handleCancel}>
                             Cancel
                         </button>
                     </div>
