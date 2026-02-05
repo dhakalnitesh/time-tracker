@@ -59,7 +59,7 @@ const App = () => {
             }
           />
           <Route
-            path="/update"
+            path="/update/:id"
             element={
               <ProtectedRoute>
                 <Edit />

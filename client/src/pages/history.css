@@ -6,7 +6,8 @@
 }
 .task-list {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(4, 1fr);
+  justify-content: center;
 }
 .avatar {
   background-color: lightblue;
@@ -25,4 +26,30 @@
 }
 h3{
     margin-top: 20px;
+    padding: 0px 30px;
+}
+
+.delete-btn {
+  background-color: #b9655c;
+  border: none;
+  color: #fff;
+  padding: 4px 100px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.8rem;
+  align-self: flex-start;
+  border-radius: 6px;
+  margin-left: 23px;
+
+}
+.edit-btn{
+margin-left: 23px;
+
+  color: white;
+  padding: 2px ;
+  width:85%;
+    background-color:  rgb(103, 105, 170);
+}
+.edit-btns:hover{
+  background-color:  rgb(74, 79, 207);
 }

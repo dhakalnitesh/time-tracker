@@ -37,7 +37,7 @@ const Dashboard = () => {
   const fetchData = async (date) => {
     try {
       const selectedDate = date || currentDate;
-      const response = await api.get(`/task/date=${selectedDate}`);
+      const response = await api.get(`/task/By/${selectedDate}`);
 
       if (!response.data || response.data.length === 0) {
         setList([]);
@@ -77,30 +77,16 @@ const Dashboard = () => {
       console.error(err);
     }
   };
-  const taskEdit = async (id) => {
-    // try {
-    //   //Here I have to create the form that include the details like in the task add section so that we can easily update the data which is stored at here
-      navigate(`/update${id}`);
-    //   await api.put(`/editTask/${id}`);
-    //   setList((prev) => prev.filter((task) => task.id !== id));
-    // } catch (err) {
-    //   console.error(err);
-    // }
-  };
 
   return (
     <div className="dashboard-container">
-      {/* NAV */}
       <div className="nav">
         <h1>Task Tracker System</h1>
         <button className="logout" onClick={logout}>
           Logout
         </button>
       </div>
-
-      {/* LEFT + RIGHT WRAPPER */}
       <div className="main">
-        {/* LEFT */}
         <div className="left">
           <div className="task-buttons">
             <button className="btn-primary" onClick={addTask}>
@@ -113,7 +99,7 @@ const Dashboard = () => {
 
           <div className="task-head">
             <div className="task">
-              <h3>
+              <h2>
                 Task List{" "}
                 <input
                   type="date"
@@ -123,7 +109,7 @@ const Dashboard = () => {
                     fetchSummary(e.target.value);
                   }}
                 />
-              </h3>
+              </h2>
               <h4>Total Task: {taskCount}</h4>
             </div>
 
@@ -140,11 +126,11 @@ const Dashboard = () => {
                     <p>Category: {category}</p>
                     <p>Time_minutes: {time_minutes}</p>
                     <p>Date: {date}</p>
-                    <button className="edit-btn" onClick={() => taskEdit(`${id}`)}>
+                    <button className="edit-btnD" onClick={() => navigate(`/update/${id}`)}>
                       Edit
                     </button>
                     <button
-                      className="delete-btn"
+                      className="delete-btnD"
                       onClick={() => taskDelete(id)}
                     >
                       Delete
@@ -156,7 +142,6 @@ const Dashboard = () => {
           </div>
         </div>
 
-        {/* RIGHT */}
         <div className="right">
           <div className="time-summary">
             <h3>Today Task Summary</h3>

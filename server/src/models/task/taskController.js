@@ -39,6 +39,26 @@ class TaskController {
             res.json({ message: err.message });
         }
     };
+    // Get task by ID
+async getTaskById(req, res) {
+    const { id } = req.params;
+    console.log(id)
+    try {
+        const task = await taskModel.findOne({
+            where: { id },
+            raw: true
+        });
+        
+        if (!task) {
+            return res.status(404).json({ message: "Task not found" });
+        }
+        
+        return res.json(task);
+    } catch (err) {
+        console.error(err);
+        return res.status(500).json({ error: err.message });
+    }
+}
     //search the task by date
     async getTaskByDate(req, res) {
         const dateInput = req.params.date || req.query;
@@ -77,7 +97,7 @@ class TaskController {
     };
 //update task
 // Simple editTask using Sequelize (the AI generated code)
-async editTask(req, res) {
+async updateTask(req, res) {
   const id = req.params.id || req.query.id;   // get task id
   const updateData = req.body;                // get updated fields
 

@@ -35,33 +35,38 @@ const History = () => {
         <h1>
           Task History{" "}
         </h1>
-            <button className="logout" onClick={goBack}>Dashboard</button>
+        <button className="logout" onClick={goBack}>Dashboard</button>
       </div>
       <h3> Total Task: {taskCount}</h3>
-<div className="left">
-      <div className="task-list">
-        {task.map((item) => {
-          const { id, task_name, category, time_minutes, date } = item;
-          return (
-            <div className="task-details" key={id}>
-              <p className="avatar">{id}</p>
-              <br />
-              <p>Task_Name: {task_name}</p>
-              <p>Category: {category}</p>
-              <p>Time_Minutes: {time_minutes}</p>
-              <p>Date: {date}</p>
-              <br />
-              <button className="delete-btn"
-                onClick={() => {
-                  deleteTask(id);
-                }}
-              >
-                Delete
-              </button>
-            </div>
-          );
-        })}
-      </div>
+      <div className="left">
+        <div className="task-list">
+          {task.map((item) => {
+            const { id, task_name, category, time_minutes, date } = item;
+            return (
+              <div className="task-details" key={id}>
+                <p className="avatar">{id}</p>
+                <br />
+                <p>Task_Name: {task_name}</p>
+                <p>Category: {category}</p>
+                <p>Time_Minutes: {time_minutes}</p>
+                <p>Date: {date}</p>
+                <br />
+
+                <button className="delete-btn"
+                  onClick={() => {
+                    deleteTask(id);
+                  }}
+                >
+                  Delete
+                </button>
+                 <button className="edit-btn" onClick={() => navigate(`/update/${id}`)}>
+                      Edit
+                    </button>
+                
+              </div>
+            );
+          })}
+        </div>
       </div>
     </div>
   );
